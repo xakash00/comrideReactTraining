@@ -1,7 +1,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import AboutUs from "../components/aboutUs";
-import ContactUs from "../components/contactUs";
-import Home from "../components/home";
+import AboutUs from "../modules/aboutUs";
+import ContactUs from "../modules/contactUs";
+import Home from "../modules/home";
 import Header from "../components/header"
 const Index = () => {
   return (

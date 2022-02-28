@@ -15,10 +15,10 @@ console.log(item,"from card")
   return (
     <div className="col">
       <div className="card">
-        <img src={item?.thumbnailUrl} className="card-img-top" alt="..." />
+        {/* <img src={item?.thumbnailUrl} className="card-img-top" alt="..." /> */}
         <div className="card-body">
           <h5 style={{ color: "red" }} className="card-title">
-           {item?.email}
+           {item?.joke}
           </h5>
           <br />
           <hr />

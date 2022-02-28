@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-import Card from "../modules/card";
+import Card from "./card";
 const ContactUs = () => {
   const [data, setData] = useState({});
   const [page, setPage] = useState(0);
@@ -16,7 +16,8 @@ const ContactUs = () => {
     axios.get(url).then((res) => setData(res.data));
   };
 
-  let url = "https://jsonplaceholder.typicode.com/posts/1/comments";
+  let url = "https://v2.jokeapi.dev/joke/any?format=json&blacklistFlags=nsfw,sexist&type=single&lang=EN&amount=10"
+
   
 
   useEffect(() => handleClick(), [page]);
@@ -25,7 +26,7 @@ const ContactUs = () => {
     <div>
         {page}
         <button onClick={increment}>increse</button>
-      {Object.values(data).map((item) => {
+      {Object.values(data?.jokes).map((item) => {
         return <Card item={item} />;
       })}
     </div>
