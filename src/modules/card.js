@@ -15,7 +15,7 @@ const Card = ({ item, color }) => {
     <div className="col">
       <div className="card mt-4">
         <div className="card-body">
-          <h5 style={{ color: `${color}` }} className="card-title">
+          <h5 style={{ color: `${color}` }} className="card-title lead">
             {item?.joke}
           </h5>
           <br />

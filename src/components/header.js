@@ -1,11 +1,16 @@
 import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./header.css";
+import { useNavigate } from "react-router-dom";
 const Header = () => {
   const location = useLocation();
-  console.log(location.pathname)
+  console.log(location.pathname);
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("email");
+    navigate("/login");
+  };
   return (
-    
     <>
       <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container-fluid">
@@ -26,16 +31,30 @@ const Header = () => {
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav ms-auto mb-2 mb-lg-0">
               <li className="nav-item me-4">
-                <NavLink className={location.pathname==="/contact"?"nav-item active":"nav-item"} to="/contact">
+                <NavLink
+                  className={
+                    location.pathname === "/contact"
+                      ? "nav-item active"
+                      : "nav-item"
+                  }
+                  to="/contact"
+                >
                   Contact
                 </NavLink>
               </li>
-              <li className="nav-item">
+              <li className="nav-item me-4">
                 <NavLink className="nav-item" to="/about">
                   About
                 </NavLink>
               </li>
-              <li className="nav-item"></li>
+              <li className="nav-item me-4">
+                <NavLink className="nav-item" to="/login">
+                  Login
+                </NavLink>
+              </li>
+              <button onClick={handleLogout} className="btn btn-primary">
+                Logout
+              </button>
             </ul>
           </div>
         </div>
