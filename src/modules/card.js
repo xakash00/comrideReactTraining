@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useState, useEffect } from "react";
 import CardImg from "../assets/logo512.png";
-const Card = ({ item, color }) => {
+const Card = ({ item, color,index}) => {
   const [state, setState] = useState(0);
 
   const increment = () => {
@@ -18,6 +18,7 @@ const Card = ({ item, color }) => {
           <h5 style={{ color: `${color}` }} className="card-title lead">
             {item?.joke}
           </h5>
+          <p>{index}</p>
           <br />
           <hr />
           {item.category}

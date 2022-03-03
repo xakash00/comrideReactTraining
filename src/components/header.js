@@ -2,13 +2,16 @@ import React from "react";
 import { NavLink, useLocation } from "react-router-dom";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import * as loginAction from "../redux/action/loginAction"
+
 const Header = () => {
   const location = useLocation();
+  const dispatch = useDispatch()
   console.log(location.pathname);
   const navigate = useNavigate();
   const handleLogout = () => {
-    localStorage.removeItem("email");
-    navigate("/login");
+   dispatch(loginAction.logout())
   };
   return (
     <>

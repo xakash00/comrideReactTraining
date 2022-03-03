@@ -57,8 +57,8 @@ const ContactUs = () => {
               return item;
             }
           })
-          .map((item) => {
-            return <Card color={color} item={item} />;
+          .map((item,index) => {
+            return <Card key={index} index={index} color={color} item={item} />;
           })}
       </div>
     </div>
