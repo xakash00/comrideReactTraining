@@ -3,15 +3,17 @@ import { NavLink, useLocation } from "react-router-dom";
 import "./header.css";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import * as loginAction from "../redux/action/loginAction"
+import * as loginAction from "../redux/action/loginAction";
+import { USER_EMAIL } from "../redux/config";
 
 const Header = () => {
   const location = useLocation();
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   console.log(location.pathname);
   const navigate = useNavigate();
   const handleLogout = () => {
-   dispatch(loginAction.logout())
+    dispatch(loginAction.logout());
+    navigate("/login")
   };
   return (
     <>
@@ -55,9 +57,16 @@ const Header = () => {
                   Login
                 </NavLink>
               </li>
-              <button onClick={handleLogout} className="btn btn-primary">
-                Logout
-              </button>
+              <li className="nav-item me-4">
+                <NavLink className="nav-item" to="/registration">
+                  Registation
+                </NavLink>
+              </li>
+              {USER_EMAIL === null ? null : (
+                <button onClick={handleLogout} className="btn btn-primary">
+                  Logout
+                </button>
+              )}
             </ul>
           </div>
         </div>

@@ -6,10 +6,14 @@ import Header from "../components/header";
 import Count from "../modules/count";
 import Login from "../modules/login";
 import PrivateRoute from "./PrivateRoute";
+import RegistrationPage from "../modules/registrationPage"
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 const Index = () => {
   return (
     <Router>
       <Header />
+      <ToastContainer />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<AboutUs />} />
@@ -19,6 +23,7 @@ const Index = () => {
 
         <Route path="/count" element={<Count />} />
         <Route path="/login" element={<Login />} />
+        <Route path="/registration" element={<RegistrationPage />} />
       </Routes>
     </Router>
   );

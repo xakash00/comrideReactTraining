@@ -6,16 +6,17 @@ import {
   LOGIN_SUCCESS,
   LOGOUT,
 } from "../action/types";
+import { USER_EMAIL, USER_PASSWORD } from "../config";
 
 export function* loginWorker(action) {
   console.log(action, "login");
   try {
     yield put({ type: LOGIN_LOADING });
-    if (action.email === "abc@gmail.com" && action.password === "123456") {
+    if (action.email === USER_EMAIL || action.password === USER_PASSWORD) {
       yield put({ type: LOGIN_SUCCESS });
       localStorage.setItem("email", action.email);
       yield action.onSuccess("Login SuccessFull");
-    } else if (action.email === "" && action.password === "") {
+    } else if (action.email === "" || action.password === "") {
       yield put({ type: LOGIN_FAIL });
       yield action.onError("Empty Fields");
     } else {

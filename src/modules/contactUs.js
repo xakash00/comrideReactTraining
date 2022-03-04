@@ -1,5 +1,6 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Card from "./card";
 const ContactUs = () => {
@@ -9,7 +10,8 @@ const ContactUs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
   console.log(location.pathname);
-
+const loginReducer =useSelector((store)=>store.loginReducer)
+console.log(loginReducer)
   const increment = () => {
     setPage((prevState) => page + 1);
   };
@@ -26,7 +28,6 @@ const ContactUs = () => {
     <div className="container">
       <div className="d-flex">
         <div className="mt-5 mb-5 text-center">
-         
         </div>
       </div>
       <div className="d-flex">

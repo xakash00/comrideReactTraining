@@ -1,7 +1,9 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import * as loginAction from "../redux/action/loginAction";
+
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -20,13 +22,15 @@ const Login = () => {
   };
   const onSuccess = (data) => {
     console.log(data);
+    toast.success(data);
     navigate("/contact");
     setLoading(false);
   };
   const onError = (data) => {
     console.log(data);
     setLoading(false);
-    setError(data)
+    toast.error(data);
+    setError(data);
   };
 
   console.log(loading);
@@ -53,12 +57,10 @@ const Login = () => {
                 onChange={(e) => setPassword(e.target.value)}
                 value={password}
               />
-              <p className="text-danger text-center">
-                {error}
-              </p>
+              <p className="text-danger text-center">{error}</p>
               {/* <button onClick={()=>setpasswordShow(!passwordShow)}>show</button> */}
               <button type="submit" className="btn btn-success">
-               {loading?"loading....":"login"} 
+                {loading ? "loading...." : "login"}
               </button>
             </div>
           </form>
