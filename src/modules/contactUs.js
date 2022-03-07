@@ -1,8 +1,9 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import Card from "./card";
+import * as jokeAction from "../redux/action/jokesAction";
 const ContactUs = () => {
   const [data, setData] = useState({});
   const [page, setPage] = useState(0);
@@ -10,25 +11,29 @@ const ContactUs = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const location = useLocation();
   console.log(location.pathname);
-const loginReducer =useSelector((store)=>store.loginReducer)
-console.log(loginReducer)
+  const dispatch = useDispatch();
   const increment = () => {
     setPage((prevState) => page + 1);
   };
 
-  useEffect(()=>{
-    axios.get(url).then((res) => setData(res.data));
+  useEffect(() => {
+    dispatch(jokeAction.requestApiData(onSuccess, onError));
+  }, []);
 
-  },[])
-
+  const onSuccess = (data) => {
+    console.log(data);
+    setData(data)
+  };
+  const onError = (data) => {
+    console.log(data);
+  };
   let url =
-    "https://v2.jokeapi.dev/joke/any?format=json&blacklistFlags=nsfw,sexist&type=single&lang=EN&amount=10";
+    "https://v2.jokeapi.dev/joke/any?format=json&blacklistFlags=nsfw,sexist&type=single&lang=EN&amount=20";
   console.log(data);
   return (
     <div className="container">
       <div className="d-flex">
-        <div className="mt-5 mb-5 text-center">
-        </div>
+        <div className="mt-5 mb-5 text-center"></div>
       </div>
       <div className="d-flex">
         <input
@@ -37,13 +42,13 @@ console.log(loginReducer)
           onChange={(e) => setSearchTerm(e.target.value)}
           placeholder="Type to search"
         />
-         <input
-            className="form-control"
-            type="text"
-            value={color}
-            placeholder="Type to change color"
-            onChange={(e) => setColor(e.target.value)}
-          />
+        <input
+          className="form-control"
+          type="text"
+          value={color}
+          placeholder="Type to change color"
+          onChange={(e) => setColor(e.target.value)}
+        />
       </div>
       <div className="row">
         {data?.jokes
@@ -58,7 +63,7 @@ console.log(loginReducer)
               return item;
             }
           })
-          .map((item,index) => {
+          .map((item, index) => {
             return <Card key={index} index={index} color={color} item={item} />;
           })}
       </div>

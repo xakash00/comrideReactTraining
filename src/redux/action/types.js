@@ -9,3 +9,5 @@ export const LOGIN_FAIL = "LOGIN_FAIL";
 export const LOGIN_LOADING = "LOGIN_LOADING";
 
 export const REGISTRATION = "REGISTRATION";
+
+export const FETCH_JOKES = "FETCH_JOKES"

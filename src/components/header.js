@@ -13,6 +13,7 @@ const Header = () => {
   const navigate = useNavigate();
   const handleLogout = () => {
     dispatch(loginAction.logout());
+    window.location.reload(); 
     navigate("/login")
   };
   return (
