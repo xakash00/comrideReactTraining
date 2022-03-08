@@ -11,3 +11,6 @@ export const LOGIN_LOADING = "LOGIN_LOADING";
 export const REGISTRATION = "REGISTRATION";
 
 export const FETCH_JOKES = "FETCH_JOKES"
+
+
+export const FETCH_WORD = "FETCH_WORD"
